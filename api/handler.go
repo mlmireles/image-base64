@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	e "sp-api/errors"
+	e "image-base64/errors"
 )
 
 // HTTPHandler wraps a function returning an error by handling the error and
