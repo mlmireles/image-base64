@@ -2,10 +2,9 @@ package api
 
 import (
 	"encoding/json"
+	e "image-base64/errors"
 	"log"
 	"net/http"
-
-	e "image-base64/errors"
 )
 
 // API struct interface
