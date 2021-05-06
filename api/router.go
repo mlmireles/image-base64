@@ -16,6 +16,7 @@ func (a API) GetRouter() *mux.Router {
 	s := router.PathPrefix(pathPrefix).Subrouter()
 
 	s.HandleFunc("/hello", HTTPHandler(a.helloWorld)).Methods(http.MethodGet)
+	s.HandleFunc("/encode", HTTPHandler(a.encode)).Methods(http.MethodGet)
 
 	return s
 }
