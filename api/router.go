@@ -11,7 +11,7 @@ const pathPrefix = ""
 
 // GetRouter obtaining router
 func (a API) GetRouter() *mux.Router {
-	fmt.Println("Creating the router...")
+	fmt.Println("Creating router...")
 	router := mux.NewRouter()
 	s := router.PathPrefix(pathPrefix).Subrouter()
 
