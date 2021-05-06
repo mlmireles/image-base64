@@ -26,36 +26,39 @@ func (a API) encode(w http.ResponseWriter, r *http.Request) e.HTTPError {
 		// Read the entire file into a byte slice
 		bytes, err = ioutil.ReadFile(encode.Path)
 		if err != nil {
-			log.Fatal(err)
+			log.Println("[encode.go] ", err)
+			return e.HTTPError{Error: e.BadRequest{}, Message: "Error reading file"}
 		}
 
 	} else {
 		// input http path
 		resp, err := http.Get(encode.Path)
 		if err != nil {
-			log.Fatal(err)
+			log.Println("[encode.go] ", err)
+			return e.HTTPError{Error: e.BadRequest{}, Message: "Error getting file from url"}
 		}
 
 		defer resp.Body.Close()
 		bytes, err = ioutil.ReadAll(resp.Body)
 		if err != nil {
 			log.Fatal(err)
+			return e.HTTPError{Error: e.BadRequest{}, Message: "Error reading file from url"}
 		}
 	}
 
-	var base64Encoding string
+	var encoded string
 	mimeType := http.DetectContentType(bytes)
 
 	switch mimeType {
 	case "image/jpeg":
-		base64Encoding += "data:image/jpeg;base64,"
+		encoded += "data:image/jpeg;base64,"
 	case "image/png":
-		base64Encoding += "data:image/png;base64,"
+		encoded += "data:image/png;base64,"
 	}
 
-	base64Encoding += toBase64(bytes)
-	log.Println(base64Encoding)
-	return respond(w, encode)
+	encoded += toBase64(bytes)
+	//log.Println(encoded)
+	return respond(w, encoded)
 }
 
 func toBase64(b []byte) string {
