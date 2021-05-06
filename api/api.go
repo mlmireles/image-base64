@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	e "image-base64/errors"
+	e "github.com/mlmireles/image-base64/errors"
 )
 
 // API struct interface

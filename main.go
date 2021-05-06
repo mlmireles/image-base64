@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"image-base64/api"
-	"image-base64/config"
+	"github.com/mlmireles/image-base64/api"
+	"github.com/mlmireles/image-base64/config"
 )
 
 func main() {
