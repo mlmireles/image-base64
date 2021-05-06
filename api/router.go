@@ -7,7 +7,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-const pathPrefix = "/api"
+const pathPrefix = ""
 
 // GetRouter obtaining router
 func (a API) GetRouter() *mux.Router {
