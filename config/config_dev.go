@@ -16,8 +16,8 @@ func getEnv() string {
 
 // GetServerHandler obtain http.Handler with CORS
 func GetServerHandler(r *mux.Router) (string, http.Handler) {
-	fmt.Println("Starting server at port :4040")
-	return ":4040", getCORS().Handler(r)
+	fmt.Println("Starting server at port :3030")
+	return ":3030", getCORS().Handler(r)
 }
 
 func getCORS() *cors.Cors {
