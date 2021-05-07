@@ -16,9 +16,14 @@ func (a API) decode(w http.ResponseWriter, r *http.Request) e.HTTPError {
 		log.Println("[encode.go] ", err)
 		return e.HTTPError{Error: e.BadRequest{}, Message: "Error reading file"}
 	}
-	log.Println(encoded)
 
-	return respond(w, nil)
+	b, err := fromBase64(encoded)
+	if err != nil {
+		log.Println("[encode.go] ", err)
+		return e.HTTPError{Error: e.BadRequest{}, Message: "Error reading file"}
+	}
+
+	return respond(w, b)
 }
 
 func fromBase64(s string) ([]byte, error) {
