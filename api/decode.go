@@ -1,23 +1,22 @@
 package api
 
 import (
+	"bytes"
 	"encoding/base64"
-	"encoding/json"
 	"log"
 	"net/http"
+	"strings"
 
 	e "github.com/mlmireles/image-base64/errors"
 )
 
 func (a API) decode(w http.ResponseWriter, r *http.Request) e.HTTPError {
-	var encoded string
-	err := json.NewDecoder(r.Body).Decode(&encoded)
-	if err != nil {
-		log.Println("[encode.go] ", err)
-		return e.HTTPError{Error: e.BadRequest{}, Message: "Error reading file"}
-	}
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(r.Body)
+	encoded := buf.String()
 
-	b, err := fromBase64(encoded)
+	arr := strings.Split(encoded, ",")
+	b, err := fromBase64(arr[1])
 	if err != nil {
 		log.Println("[encode.go] ", err)
 		return e.HTTPError{Error: e.BadRequest{}, Message: "Error reading file"}
