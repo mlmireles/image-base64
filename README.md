@@ -1,2 +1,13 @@
 # image-base64
-Converts an image file to their base64 encoding
+Encodes and decodes an image file to and from their base64 encoding
+
+For run, you need to specify an environement:
+
+- Development (dev)
+- Live (live)
+
+Example: 
+
+    go build -tags dev
+    go run -tags prod
+
